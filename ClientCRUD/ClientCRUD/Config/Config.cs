@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ClientCRUD.Config
 {
@@ -81,12 +82,12 @@ namespace ClientCRUD.Config
         //guardar o actualizar un usuario
         public static  async Task<int> SaveOrUpdateClient(Client cliente, bool isNewClient = false)
         {
-            string token = App.Current.Properties["token"] as string;
-            var authHeader = new AuthenticationHeaderValue("bearer",token);
+           string token = App.Current.Properties["token"] as string;
+           var authHeader = new AuthenticationHeaderValue("bearer",token);
             
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = authHeader;
-            //client.BaseAddress = new Uri(uri);
+            var Code = 404;
             try
             {
                 string json = JsonSerializer.Serialize<Client>(cliente, serializerOptions);
@@ -102,11 +103,20 @@ namespace ClientCRUD.Config
                 {
                     Uri uri = new Uri("http://apps01.forteinnovation.mx:8590/api/cliente/" + cliente.clienteId);
                     response = await client.PutAsync(uri, content);
+
+                }
+
+                if(response != null)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    var strResultJson = JObject.Parse(result);
+
+                    Code = strResultJson.Value<int>("Code");
                 }
 
                 if (response.IsSuccessStatusCode)
                 {
-                   return 200;
+                   return Code;
                 }
 
             }
@@ -115,7 +125,7 @@ namespace ClientCRUD.Config
                // Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
 
-            return 404;
+            return Code;
         }
 
         //borrado de un cliente

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:prism="http://prismlibrary.com" xmlns:overlay="clr-namespace:ClientCRUD.Controls"             
+             prism:ViewModelLocator.AutowireViewModel="True" 
              x:Class="ClientCRUD.Views.RegisterClientPage">
 
     <Grid>
@@ -18,7 +18,7 @@
                             <Label HorizontalOptions="Start"                  
                                    Text="Nombre Completo"></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtFullName, Mode=TwoWay}"                
+                        <Entry Text="{Binding TxtFullName}"                
                                Placeholder="Ej. Paul C."                                                     
                                HeightRequest="45"                                                     
                                Keyboard="Text"                
@@ -35,11 +35,11 @@
                             <Label HorizontalOptions="Start"                  
                                    Text="RFC"></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtRFC, Mode=TwoWay}"                
+                        <Entry Text="{Binding TxtRFC}"                
                                Placeholder="Ej. Paul C."                                                     
                                HeightRequest="45"                                                     
                                Keyboard="Text"                
-                               MaxLength="99"/>
+                               MaxLength="13"/>
                     </StackLayout>
                 </Frame>
                 <Frame HasShadow="False"            
@@ -67,7 +67,7 @@
                                 HorizontalOptions="Start" 
                                 Text="Telefono Móvil" ></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtCellPhone, Mode=TwoWay}" 
+                        <Entry Text="{Binding TxtCellPhone}" 
                             Placeholder="271152808"                                      
                             HeightRequest="45"                                      
                             Keyboard="Numeric" 
@@ -84,7 +84,7 @@
                             <Label HorizontalOptions="Start" 
                                 Text="Correo Electronico" ></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtEmail, Mode=TwoWay}" 
+                        <Entry Text="{Binding TxtEmail}" 
                                Placeholder="Ejemplo@gmail.com"                                      
                                HeightRequest="45"                                      
                                Keyboard="Email" 
@@ -101,7 +101,7 @@
                             <Label HorizontalOptions="Start" 
                                 Text="Password" ></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtPassword, Mode=TwoWay}"
+                        <Entry Text="{Binding TxtPassword}"
                                Placeholder="******"                                      
                                HeightRequest="45"
                                Keyboard="Text" IsPassword="True"
@@ -138,7 +138,7 @@
                             <Label HorizontalOptions="Start"                  
                                    Text="Domicilio"></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtDomicilio, Mode=TwoWay}"                
+                        <Entry Text="{Binding TxtDomicilio}"                
                                Placeholder="Av. siempre viva calle 67"                                                     
                                HeightRequest="45"                                                     
                                Keyboard="Text"                
@@ -155,7 +155,7 @@
                             <Label HorizontalOptions="Start"                  
                                    Text="Limite de Credito"></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtCreditLimit, StringFormat='{0:C2}', Mode=TwoWay}"                                                                     
+                        <Entry Text="{Binding TxtCreditLimit, StringFormat='{0:C2}'}"                                                                     
                                HeightRequest="45"                                                     
                                Keyboard="Numeric"                
                                MaxLength="99"/>

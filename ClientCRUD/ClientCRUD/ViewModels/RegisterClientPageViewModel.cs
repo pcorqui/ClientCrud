@@ -16,6 +16,7 @@ namespace ClientCRUD.ViewModels
         INavigationService _navigationService;
         Client client;
         bool update = true;
+        string mensaje = "Cliente agregado";
         public RegisterClientPageViewModel(INavigationService navigationService, IPageDialogService dialogService)
         {
             _dialogService = dialogService;
@@ -28,107 +29,100 @@ namespace ClientCRUD.ViewModels
         public async void Registrar()
         {
             //validaciones
-            //if (String.IsNullOrEmpty(_TxtFullName) || String.IsNullOrWhiteSpace(_TxtFullName))
-            //{
-            //    await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su nombre", "ok");
-            //    return;
-            //}
+            if (String.IsNullOrEmpty(TxtFullName) || String.IsNullOrWhiteSpace(TxtFullName))
+            {
+                await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su nombre", "ok");
+                return;
+            }
 
-            //if (String.IsNullOrEmpty(TxtRFC) || String.IsNullOrWhiteSpace(TxtRFC))
-            //{
-            //    await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su RFC", "ok");
-            //    return;
-            //}
+            if (String.IsNullOrEmpty(TxtRFC) || String.IsNullOrWhiteSpace(TxtRFC))
+            {
+                await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su RFC", "ok");
+                return;
+            }
 
-            //if (String.IsNullOrEmpty(TxtCellPhone) || String.IsNullOrWhiteSpace(TxtCellPhone))
-            //{
-            //    await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su Numero de celular", "ok");
-            //    return;
-            //}
+            if (String.IsNullOrEmpty(TxtCellPhone) || String.IsNullOrWhiteSpace(TxtCellPhone))
+            {
+                await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su Numero de celular", "ok");
+                return;
+            }
 
-            //if (String.IsNullOrEmpty(TxtEmail) || String.IsNullOrWhiteSpace(TxtEmail))
-            //{
-            //    await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su email", "ok");
-            //    return;
-            //}
+            if (String.IsNullOrEmpty(TxtEmail) || String.IsNullOrWhiteSpace(TxtEmail))
+            {
+                await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su email", "ok");
+                return;
+            }
 
-            //if (String.IsNullOrEmpty(TxtPassword) || String.IsNullOrWhiteSpace(TxtPassword))
-            //{
-            //    await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su password", "ok");
-            //    return;
-            //}
+            if (String.IsNullOrEmpty(TxtPassword) || String.IsNullOrWhiteSpace(TxtPassword))
+            {
+                await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su password", "ok");
+                return;
+            }
 
-            //if (String.IsNullOrEmpty(TxtDomicilio) || String.IsNullOrWhiteSpace(TxtDomicilio))
-            //{
-            //    await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su domicilio", "ok");
-            //    return;
-            //}
+            if (String.IsNullOrEmpty(TxtDomicilio) || String.IsNullOrWhiteSpace(TxtDomicilio))
+            {
+                await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir su domicilio", "ok");
+                return;
+            }
 
-            //if (String.IsNullOrEmpty(TxtCreditLimit) || String.IsNullOrWhiteSpace(TxtCreditLimit))
-            //{
-            //    await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir un limite de credito", "ok");
-            //    return;
-            //}
+            if (String.IsNullOrEmpty(TxtCreditLimit) || String.IsNullOrWhiteSpace(TxtCreditLimit))
+            {
+                await _dialogService.DisplayAlertAsync("Alerta", "Favor de introducir un limite de credito", "ok");
+                return;
+            }
 
-           // var credito = Math.Round(Double.Parse(TxtCreditLimit), 2);
-            //var status = _selectedItem.StatusID;
+            var credito = Math.Round(Double.Parse(TxtCreditLimit), 2);
+            var status = _selectedItem.StatusID;
+
+            if (update)
+            {
+                mensaje = "Cliente actualizado";
+                client.nombreCompleto = TxtFullName;
+                client.rfc = TxtRFC;
+                client.telefonoMovil = TxtCellPhone;
+                client.correoElectronico = TxtEmail;
+                client.domicilio = TxtDomicilio;
+                client.fechaNacimiento = DtBirdDate.ToString("O");
+                client.limiteCredito = credito;
+                client.estatusClienteId = SelectedItem.StatusID;
+            }
+            else
+            {
+                client = new Client()
+                {
+                    nombreCompleto = TxtFullName,
+                    rfc = TxtRFC,
+                    telefonoMovil = TxtCellPhone,
+                    correoElectronico = TxtEmail,
+                    domicilio = TxtDomicilio,
+                    fechaNacimiento = DtBirdDate.ToString("O"),
+                    limiteCredito = credito,
+                    estatusClienteId = SelectedItem.StatusID,
+
+                };
+            }
             //client = new Client()
             //{
-            //    nombreCompleto = TxtFullName,
-            //    rfc = TxtRFC,
-            //    telefonoMovil = TxtCellPhone,
-            //    correoElectronico = TxtEmail,
-            //    domicilio = TxtDomicilio,
+            //    nombreCompleto = "Paul Cortes",
+            //    rfc = "hdhdyf",
+            //    telefonoMovil = "2711522808",
+            //    correoElectronico = "yenia94@hotmail.com",
+            //    domicilio = "Mexico magico",
             //    fechaNacimiento = DtBirdDate.ToString("O"),
-            //    limiteCredito = credito,
-            //    estatusClienteId = SelectedItem.StatusID,
-
-            // };
-
-            //if (update)
-            //{
-            //    client.nombreCompleto = TxtFullName;
-            //    client.rfc = TxtRFC;
-            //    client.telefonoMovil = TxtCellPhone;
-            //    client.correoElectronico = TxtEmail;
-            //    client.domicilio = TxtDomicilio;
-            //    client.fechaNacimiento = DtBirdDate.ToString("O");
-            //    client.limiteCredito = credito;
-            //    client.estatusClienteId = SelectedItem.StatusID;               
-            //}
-            //else
-            //{
-            //    client = new Client()
-            //    {
-            //        nombreCompleto = TxtFullName,
-            //        rfc = TxtRFC,
-            //        telefonoMovil = TxtCellPhone,
-            //        correoElectronico = TxtEmail,
-            //        domicilio = TxtDomicilio,
-            //        fechaNacimiento = DtBirdDate.ToString("O"),
-            //        limiteCredito = credito,
-            //        estatusClienteId = SelectedItem.StatusID,
-
-            //    };
-            //}
-            client = new Client()
-            {
-                nombreCompleto = "Paul Cortes",
-                rfc = "hdhdyffkvifkmfg2145s",
-                telefonoMovil = "2711522808",
-                correoElectronico = "chicorita@gmail.com",
-                domicilio = "Mexico magico",
-                fechaNacimiento = DtBirdDate.ToString("O"),
-                limiteCredito = 200,
-                estatusClienteId = 1,
-            };
-
+            //    limiteCredito = 200,
+            //    estatusClienteId = 1,
+            //};
 
             var result = await Config.Config.SaveOrUpdateClient(client, update);
-            if (result == 200)
+            switch (result)
             {
-                await _dialogService.DisplayAlertAsync("Informacion", "Cliente actualizado", "Ok");
-                Return();
+                case 200:
+                    await _dialogService.DisplayAlertAsync("Informacion", "Cliente actualizado", "Ok");
+                    Return();
+                    break;
+                case 400:
+                    await _dialogService.DisplayAlertAsync("Informacion", "El(la) cliente que intentas agregar o actualizar ya existe en la base de datos", "Ok");
+                    break;
             }
         }
 
@@ -187,7 +181,7 @@ namespace ClientCRUD.ViewModels
         public string TxtFullName
         {
             get { return _TxtFullName; }
-            private set { SetProperty(ref _TxtFullName, value); }
+            set { SetProperty(ref _TxtFullName, value); }
         }
 
         //email
@@ -195,7 +189,7 @@ namespace ClientCRUD.ViewModels
         public string TxtEmail
         {
             get { return _TxtEmail; }
-            private set { SetProperty(ref _TxtEmail, value); }
+            set { SetProperty(ref _TxtEmail, value); }
         }
 
         private string _TxtPassword;
@@ -203,7 +197,7 @@ namespace ClientCRUD.ViewModels
         public string TxtPassword
         {
             get { return _TxtPassword; }
-            private set { SetProperty(ref _TxtPassword, value); }
+            set { SetProperty(ref _TxtPassword, value); }
         }
 
 
@@ -212,7 +206,7 @@ namespace ClientCRUD.ViewModels
         public string TxtFechaDeNacimiento
         {
             get { return _TxtFechaDeNacimiento; }
-            private set { SetProperty(ref _TxtFechaDeNacimiento, value); }
+            set { SetProperty(ref _TxtFechaDeNacimiento, value); }
         }
 
         //Status Persona
@@ -220,7 +214,7 @@ namespace ClientCRUD.ViewModels
         public int TxtStatus
         {
             get { return _TxtStatus; }
-            private set { SetProperty(ref _TxtStatus, value); }
+            set { SetProperty(ref _TxtStatus, value); }
         }
 
         //Limite de credito
@@ -228,7 +222,7 @@ namespace ClientCRUD.ViewModels
         public string TxtCreditLimit
         {
             get { return _TxtCreditLimit; }
-            private set { SetProperty(ref _TxtCreditLimit, value); }
+            set { SetProperty(ref _TxtCreditLimit, value); }
         }
 
         //RFC
@@ -236,7 +230,7 @@ namespace ClientCRUD.ViewModels
         public string TxtRFC
         {
             get { return _TxtRFC; }
-            private set { SetProperty(ref _TxtRFC, value); }
+            set { SetProperty(ref _TxtRFC, value); }
         }
 
         //CellPhone
@@ -244,7 +238,7 @@ namespace ClientCRUD.ViewModels
         public string TxtCellPhone
         {
             get { return _TxtCellPhone; }
-            private set { SetProperty(ref _TxtCellPhone, value); }
+            set { SetProperty(ref _TxtCellPhone, value); }
         }
 
         //Domicilio
@@ -252,36 +246,28 @@ namespace ClientCRUD.ViewModels
         public string TxtDomicilio
         {
             get { return _TxtDomicilio; }
-            private set { SetProperty(ref _TxtDomicilio, value); }
+            set { SetProperty(ref _TxtDomicilio, value); }
         }
 
         private DateTime _MaximumDate = DateTime.Now;
         public DateTime MaximumDate
         {
             get { return _MaximumDate; }
-            private set { SetProperty(ref _MaximumDate, value); }
+            set { SetProperty(ref _MaximumDate, value); }
         }
 
         private DateTimeOffset _DtBirdDate = DateTime.Now;
         public DateTimeOffset DtBirdDate
         {
             get { return _DtBirdDate; }
-            private set { SetProperty(ref _DtBirdDate, value); }
+            set { SetProperty(ref _DtBirdDate, value); }
         }
 
         private List<PickerObject> _Picker;
         public List<PickerObject> Status
         {
             get { return _Picker; }
-            private set { SetProperty(ref _Picker, value); }
+            set { SetProperty(ref _Picker, value); }
         }
-
-
-    }
-
-   public class PickerObject{
-
-        public int StatusID { get; set; }
-        public string NameStatus { get; set; }
     }
 }
