@@ -78,6 +78,7 @@ namespace ClientCRUD.ViewModels
             
         public async Task ShowClient()
         {
+            OverlayIndicator = true;
             ClientList.Clear();
             var result = await Config.Config.GetWebServiceWithToken("/clientes");
             var json = JObject.Parse(result);
@@ -103,9 +104,17 @@ namespace ClientCRUD.ViewModels
                     RaisePropertyChanged("ClientList");
                 }                 
             }
-            
-
             RaisePropertyChanged("ClientList");
+            OverlayIndicator = false;
         }
+
+        private bool _Overlayindicator;
+
+        public bool OverlayIndicator
+        {
+            get { return _Overlayindicator; }
+            set { SetProperty( ref _Overlayindicator,value); }
+        }
+
     }
 }

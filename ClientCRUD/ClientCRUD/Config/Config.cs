@@ -18,18 +18,23 @@ namespace ClientCRUD.Config
         public static async Task<string> PostWebService(Usuario user)
         {
             var client = new HttpClient();
-            client.BaseAddress = new Uri(uri);
+            Uri uri = new Uri("http://apps01.forteinnovation.mx:8590/api/auth/login");
             try
             {
-
+                serializerOptions = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    WriteIndented = true
+                };
 
                 string json = JsonSerializer.Serialize<Usuario>(user, serializerOptions);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 client.Timeout = System.TimeSpan.FromMinutes(30);
                 //HttpResponseMessage response = await client.PostAsync("/auth/login", content);
-                HttpResponseMessage response = await client.PostAsync("/users", content);
+                HttpResponseMessage response = await client.PostAsync(uri,content);
 
                 var result = await response.Content.ReadAsStringAsync();
+                //var result2 = await response.Content.();
 
                 if (response != null)
                 {

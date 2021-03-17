@@ -1,87 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:overlay="clr-namespace:ClientCRUD.Controls"
              x:Class="ClientCRUD.Views.MainPage"
              Title="{Binding Title}">
-
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-
-        <Button Text="Agregar cliente" BackgroundColor="Green" TextColor="White"
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" >
+                <Button Text="Agregar cliente" BackgroundColor="Green" TextColor="White"
                 Command="{Binding CreateCommand}"></Button>
-        <Frame BackgroundColor="Black">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Nombre" TextColor="White" ></Label>
-                <Label Text="Email" TextColor="White" HorizontalOptions="EndAndExpand"></Label>
+                <Frame BackgroundColor="Black">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Nombre" TextColor="White" ></Label>
+                        <Label Text="Acciones" TextColor="White" HorizontalOptions="EndAndExpand"></Label>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
-        </Frame>
-
-        <ListView RowHeight="100" Header="" x:Name="lista"
+        
+            <ListView RowHeight="100" Grid.Row="1" x:Name="lista" VerticalOptions="FillAndExpand"
                   CachingStrategy="RecycleElement"
                   BackgroundColor="Transparent"         
                   ItemsSource="{Binding ClientList}"                                   
                   SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid RowSpacing="5" ColumnSpacing="0" Margin="10,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="AUTO"/>
-                            </Grid.RowDefinitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="5" ColumnSpacing="0" Margin="10,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="AUTO"/>
+                                </Grid.RowDefinitions>
 
-                            <Grid  Grid.Row="1"                                      
+                                <Grid  Grid.Row="1"                                      
                                    BackgroundColor="White"                                       
                                    HeightRequest="60"                                        
                                    Opacity="0.6">
-                            </Grid>
+                                </Grid>
 
-                            <Grid Margin="10"                                       
+                                <Grid Margin="10"                                       
                                   RowSpacing="10"                                       
                                   ColumnSpacing="10"                                      
                                   Grid.Row="1">
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="AUTO"/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="AUTO"/>
+                                        <RowDefinition Height="25"/>
+                                    </Grid.RowDefinitions>
 
-                                <Label  Grid.Row="0"                                  
+                                    <Label  Grid.Row="0"                                  
                                         Text="{Binding FullName}"                                                                                                                                
                                         Font="Bold, 20"                                                                                                                                  
                                         LineBreakMode="TailTruncation"/>
 
-                                <Label Text="{Binding Email}"                                                                                                                            
+                                    <Label Text="{Binding Email}"                                                                                                                            
                                        Grid.Row="1"                                           
                                        Grid.Column="0"                                           
                                        VerticalOptions="Center"                                           
                                        LineBreakMode="TailTruncation"/>
 
-                                <StackLayout Orientation="Horizontal"                                                   
+                                    <StackLayout Orientation="Horizontal"                                                   
                                              VerticalOptions="Center"                                                  
                                              HorizontalOptions="EndAndExpand"                                                 
                                              Grid.Column="1"                                                 
                                              Grid.Row="1"                                                  
                                              Spacing="5">
-                                    <Label Text="Editar" TextColor="White" Background="blue
+                                        <Label Text="Editar" TextColor="White" Background="blue
                                            ">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source = {x:Reference lista}, Path=BindingContext.UpdateCommand}"
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source = {x:Reference lista}, Path=BindingContext.UpdateCommand}"
                                                                     CommandParameter="{Binding .,Mode=TwoWay}" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                    <Label Text="Eliminar" TextColor="White" Background="red">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source = {x:Reference lista}, Path=BindingContext.DeleteCommand}"
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Text="Eliminar" TextColor="White" Background="red">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source = {x:Reference lista}, Path=BindingContext.DeleteCommand}"
                                                                     CommandParameter="{Binding .,Mode=TwoWay}" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </StackLayout>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        <overlay:OverlayIndicator IsVisible="{Binding OverlayIndicator}"></overlay:OverlayIndicator>
+    </Grid>
     </StackLayout>
-
 </ContentPage>
