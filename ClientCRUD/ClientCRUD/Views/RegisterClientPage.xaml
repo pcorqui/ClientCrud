@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ClientCRUD.Views.RegisterClientPage">
+
+    <Grid>
+        <ScrollView Margin="20,10">
+            <StackLayout Padding="0,0,0,50">
+                <!--Frame de nombre completo-->
+                <Frame HasShadow="False"            
+                       Opacity="0.6"             
+                       Padding="2">
+                    <StackLayout Spacing="5"                
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start"                  
+                                   Text="Nombre Completo"></Label>
+                        </StackLayout>
+                        <Entry Text="{Binding TxtFullName, Mode=TwoWay}"                
+                               Placeholder="Ej. Paul C."                                                     
+                               HeightRequest="45"                                                     
+                               Keyboard="Text"                
+                               MaxLength="99"/>
+                    </StackLayout>
+                </Frame>
+                <!--Frame RFC-->
+                <Frame HasShadow="False"            
+                       Opacity="0.6"             
+                       Padding="2">
+                    <StackLayout Spacing="5"                
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start"                  
+                                   Text="RFC"></Label>
+                        </StackLayout>
+                        <Entry Text="{Binding TxtRFC, Mode=TwoWay}"                
+                               Placeholder="Ej. Paul C."                                                     
+                               HeightRequest="45"                                                     
+                               Keyboard="Text"                
+                               MaxLength="99"/>
+                    </StackLayout>
+                </Frame>
+
+                <!--Frame de cel Phone-->
+                <Frame  HasShadow="False" 
+                        Opacity="0.6"  
+                        Padding="2">
+                    <StackLayout Spacing="5" 
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label 
+                                HorizontalOptions="Start" 
+                                Text="Telefono Móvil" ></Label>
+                        </StackLayout>
+                        <Entry Text="{Binding TxtCellPhone, Mode=TwoWay}" 
+                            Placeholder="271152808"                                      
+                            HeightRequest="45"                                      
+                            Keyboard="Numeric" 
+                            MaxLength="10"/>
+                    </StackLayout>
+                </Frame>
+                <!--Frame email-->
+                <Frame HasShadow="False" 
+                    Opacity="0.6"  
+                    Padding="2">
+                    <StackLayout Spacing="5" 
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start" 
+                                Text="Correo Electronico" ></Label>
+                        </StackLayout>
+                        <Entry Text="{Binding TxtEmail, Mode=TwoWay}" 
+                               Placeholder="Ejemplo@gmail.com"                                      
+                               HeightRequest="45"                                      
+                               Keyboard="Email" 
+                               MaxLength="99"/>
+                    </StackLayout>
+                </Frame>
+                <!--Frame Password-->
+                <Frame HasShadow="False" 
+                       Opacity="0.6"  
+                       Padding="2">
+                    <StackLayout Spacing="5" 
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start" 
+                                Text="Password" ></Label>
+                        </StackLayout>
+                        <Entry Text="{Binding TxtPassword, Mode=TwoWay}"
+                               Placeholder="******"                                      
+                               HeightRequest="45"
+                               Keyboard="Text" IsPassword="True"
+                               MaxLength="99"/>
+                    </StackLayout>
+                </Frame>
+                <!--Frame Status Persona picker-->
+                <Frame HasShadow="False" 
+                       Opacity="0.6"  
+                       Padding="2">
+                    <StackLayout Spacing="5" 
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start" 
+                                   Text="Estatus Persona" ></Label>
+                        </StackLayout>
+                        <Picker Title="selecciona una opcion"
+                               HeightRequest="45"
+                              
+                               >
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Activo</x:String>
+                                    <x:String>Desactivo</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+                <!--Frame Domicilio-->
+                <Frame HasShadow="False"            
+                       Opacity="0.6"             
+                       Padding="2">
+                    <StackLayout Spacing="5"                
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start"                  
+                                   Text="Domicilio"></Label>
+                        </StackLayout>
+                        <Entry Text="{Binding TxtDomicilio, Mode=TwoWay}"                
+                               Placeholder="Av. siempre viva calle 67"                                                     
+                               HeightRequest="45"                                                     
+                               Keyboard="Text"                
+                               MaxLength="99"/>
+                    </StackLayout>
+                </Frame>
+                <!--Frame Limite de credito-->
+                <Frame HasShadow="False"            
+                       Opacity="0.6"             
+                       Padding="2">
+                    <StackLayout Spacing="5"                
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start"                  
+                                   Text="Limite de Credito"></Label>
+                        </StackLayout>
+                        <Entry Text="{Binding TxtCreditLimit, Mode=TwoWay}"                                                                     
+                               HeightRequest="45"                                                     
+                               Keyboard="Numeric"                
+                               MaxLength="99"/>
+                    </StackLayout>
+                </Frame>
+                <Button Text="Registrar" Command="{Binding RegisterCommand}"></Button>
+                <Button Text="Cancelar" Command="{Binding ReturnCommand}"></Button>
+            </StackLayout>
+        </ScrollView>
+        <!--section buttons-->    
+    </Grid>
+</ContentPage>

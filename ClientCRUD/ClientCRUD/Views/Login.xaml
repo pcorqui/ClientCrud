@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:overlay="clr-namespace:ClientCRUD.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"             
+             x:Class="ClientCRUD.Views.Login">
+
+    <Grid >
+        
+    
+    <StackLayout Margin="10,10,10,10">
+        <Label Text="Usuario:" 
+               FontSize="Large" 
+               ></Label>
+        <Entry Text="{Binding TxtUser}" 
+               TextColor="Black" 
+               Placeholder="Usuario" 
+               MaxLength="45"></Entry>
+        <Label Text="Contraseña:" 
+               FontSize="Large" 
+               ></Label>
+        <Entry Text="{Binding TxtPassword}" 
+               IsPassword="True"  
+               Placeholder="Contraseña" 
+               TextColor="Black" 
+               MaxLength="45"></Entry>
+            <Button Command="{Binding SignInCommand}" 
+                BorderRadius="30"  
+                HeightRequest="50" 
+                Text="Iniciar sesión"                               
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="EndAndExpand"></Button>
+        </StackLayout>
+        <overlay:OverlayIndicator IsVisible="{Binding OverlayIndicator}"></overlay:OverlayIndicator>
+    </Grid>
+</ContentPage>

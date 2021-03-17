@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Text.Json" Version="5.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />
+    <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\OverlayIndicator.xaml.cs">
+      <DependentUpon>OverlayIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\RegisterClientPage.xaml.cs">
+      <DependentUpon>RegisterClientPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Controls\OverlayIndicator.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RegisterClientPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
