@@ -42,7 +42,20 @@
                                MaxLength="99"/>
                     </StackLayout>
                 </Frame>
-
+                <Frame HasShadow="False"            
+                       Opacity="0.6"             
+                       Padding="2">
+                    <StackLayout Spacing="5"                
+                                 Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start"                  
+                                   Text="Fecha de nacimiento"></Label>
+                        </StackLayout>
+                        <DatePicker HeightRequest="45" MaximumDate="{Binding MaximumDate}"
+                                    Date="{Binding DtBirdDate}"
+                               />
+                    </StackLayout>
+                </Frame>
                 <!--Frame de cel Phone-->
                 <Frame  HasShadow="False" 
                         Opacity="0.6"  
@@ -107,14 +120,11 @@
                         </StackLayout>
                         <Picker Title="selecciona una opcion"
                                HeightRequest="45"
-                              
+                                ItemsSource="{Binding Status}"
+                                ItemDisplayBinding="{Binding NameStatus}"
+                                SelectedItem="{Binding SelectedItem}"
+                                
                                >
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Activo</x:String>
-                                    <x:String>Desactivo</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
                         </Picker>
                     </StackLayout>
                 </Frame>
@@ -145,7 +155,7 @@
                             <Label HorizontalOptions="Start"                  
                                    Text="Limite de Credito"></Label>
                         </StackLayout>
-                        <Entry Text="{Binding TxtCreditLimit, Mode=TwoWay}"                                                                     
+                        <Entry Text="{Binding TxtCreditLimit, StringFormat='{0:C2}', Mode=TwoWay}"                                                                     
                                HeightRequest="45"                                                     
                                Keyboard="Numeric"                
                                MaxLength="99"/>

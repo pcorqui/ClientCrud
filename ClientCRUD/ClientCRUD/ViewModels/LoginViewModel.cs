@@ -28,19 +28,19 @@ namespace ClientCRUD.ViewModels
         public ICommand SignInCommand { get; private set; }
         private async void SingIn()
         {
-            if (String.IsNullOrEmpty(TxtUser) || String.IsNullOrWhiteSpace(TxtUser))
-            {
-                await _dialogService.DisplayAlertAsync("Alerta", "Ingresa un email", "Ok");
-                return;
-            }
+            //if (String.IsNullOrEmpty(TxtUser) || String.IsNullOrWhiteSpace(TxtUser))
+            //{
+            //    await _dialogService.DisplayAlertAsync("Alerta", "Ingresa un email", "Ok");
+            //    return;
+            //}
 
-            if (String.IsNullOrEmpty(TxtPassword) || String.IsNullOrWhiteSpace(TxtPassword))
-            {
-                await _dialogService.DisplayAlertAsync("Alerta", "Ingresa la contraeña, porfavor", "Ok");
-                return;
-            }
-            //TxtUser = "FORTEDEV";
-            //TxtPassword = "Apply2019@pass";
+            //if (String.IsNullOrEmpty(TxtPassword) || String.IsNullOrWhiteSpace(TxtPassword))
+            //{
+            //    await _dialogService.DisplayAlertAsync("Alerta", "Ingresa la contraeña, porfavor", "Ok");
+            //    return;
+            //}
+            TxtUser = "FORTEDEV";
+            TxtPassword = "Apply2019@pass";
 
             OverlayIndicator = true;
             var token = await Config.Config.PostWebService(new Usuario()

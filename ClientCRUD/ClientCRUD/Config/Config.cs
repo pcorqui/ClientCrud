@@ -83,10 +83,10 @@ namespace ClientCRUD.Config
         {
             string token = App.Current.Properties["token"] as string;
             var authHeader = new AuthenticationHeaderValue("bearer",token);
-            // Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
+            
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = authHeader;
-            client.BaseAddress = new Uri(uri);
+            //client.BaseAddress = new Uri(uri);
             try
             {
                 string json = JsonSerializer.Serialize<Client>(cliente, serializerOptions);
@@ -95,11 +95,13 @@ namespace ClientCRUD.Config
                 HttpResponseMessage response = null;
                 if (isNewClient)
                 {
-                    response = await client.PostAsync("/api/cliente", content);
+                    Uri uri = new Uri("http://apps01.forteinnovation.mx:8590/api/cliente");
+                    response = await client.PostAsync(uri, content);
                 }
                 else
                 {
-                    response = await client.PutAsync("/api/cliente/"+cliente.ClientID, content);
+                    Uri uri = new Uri("http://apps01.forteinnovation.mx:8590/api/cliente/" + cliente.clienteId);
+                    response = await client.PutAsync(uri, content);
                 }
 
                 if (response.IsSuccessStatusCode)
@@ -117,7 +119,7 @@ namespace ClientCRUD.Config
         }
 
         //borrado de un cliente
-        public static async Task<int> DeleteClient(string id)
+        public static async Task<int> DeleteClient(int id)
         {
             string token = App.Current.Properties["token"] as string;
             HttpClient client = new HttpClient();

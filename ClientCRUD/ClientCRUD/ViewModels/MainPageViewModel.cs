@@ -55,7 +55,7 @@ namespace ClientCRUD.ViewModels
             {
                 //borrar con el el ws
                 
-               var status = await Config.Config.DeleteClient(client.ClientID);
+               var status = await Config.Config.DeleteClient(client.clienteId);
                 if(status == 200)
                 {
                     await _dialogService.DisplayAlertAsync("Informacion", "Cliente eliminado", "Ok");
@@ -70,8 +70,10 @@ namespace ClientCRUD.ViewModels
         {
             var navParams = new NavigationParameters()
             {
-                {"cliente",client }
+                {"cliente",client },
+                {"update", false }
             };
+            
             await _navigationService.NavigateAsync("RegisterClientPage",navParams);
         }
 
@@ -93,11 +95,11 @@ namespace ClientCRUD.ViewModels
                     ClientList.Add(new Client()
                     {
 
-                        ClientID = item.Value<int>("clienteId") + "",
-                        FullName = item.Value<string>("nombreCompleto"),                                                
-                        Email = item.Value<string>("correoElectronico"),
-                        CreditLimite = item.Value<double>("limiteCredito"),
-                        StatusClient = item.Value<int>("estatusClienteId"),
+                        clienteId = item.Value<int>("clienteId"),
+                        nombreCompleto = item.Value<string>("nombreCompleto"),                                                
+                        correoElectronico = item.Value<string>("correoElectronico"),
+                        limiteCredito = item.Value<double>("limiteCredito"),
+                        estatusClienteId = item.Value<int>("estatusClienteId"),
                         Edad = item.Value<int>("edad")
 
                     });

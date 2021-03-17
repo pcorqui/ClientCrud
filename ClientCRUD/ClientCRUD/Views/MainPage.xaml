@@ -51,11 +51,11 @@
                                     </Grid.RowDefinitions>
 
                                     <Label  Grid.Row="0"                                  
-                                        Text="{Binding FullName}"                                                                                                                                
+                                        Text="{Binding nombreCompleto}"                                                                                                                                
                                         Font="Bold, 20"                                                                                                                                  
                                         LineBreakMode="TailTruncation"/>
 
-                                    <Label Text="{Binding Email}"                                                                                                                            
+                                    <Label Text="{Binding correoElectronico}"                                                                                                                            
                                        Grid.Row="1"                                           
                                        Grid.Column="0"                                           
                                        VerticalOptions="Center"                                           
